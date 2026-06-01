@@ -8,16 +8,18 @@
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen justify-between">
 
-    <div class="bg-sky-100 border-b border-sky-200">
-        <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-sm text-sky-900">
-            <div class="font-medium flex items-center space-x-1">
-                <span>🌐</span> <span>欢迎访问学术数据与成果共享平台</span>
+    <div class="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-950 border-b border-blue-800 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center text-sm text-white">
+            <div class="font-medium flex items-center space-x-2 tracking-wide text-blue-200">
+                <span>🌐</span> <span>Multi-Species Computational Genomics & Transcriptomics Platform</span>
             </div>
-            <div class="flex items-center space-x-2 mt-1 sm:mt-0">
-                <a href="tissue.html" class="bg-white/80 hover:bg-white px-3 py-1 rounded-md border border-sky-300/50 shadow-sm transition font-medium">Tissue</a>
-                <a href="download.html" class="bg-white/80 hover:bg-white px-3 py-1 rounded-md border border-sky-300/50 shadow-sm transition font-medium">Download</a>
-                <a href="manner.html" class="bg-white/80 hover:bg-white px-3 py-1 rounded-md border border-sky-300/50 shadow-sm transition font-medium">Manner</a>
-                <a href="contact.html" class="bg-white/80 hover:bg-white px-3 py-1 rounded-md border border-sky-300/50 shadow-sm transition font-medium">Contact Us</a>
+            <div class="flex items-center space-x-1 sm:space-x-2 mt-2 sm:mt-0 flex-wrap gap-y-1">
+                <a href="index.html" class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/10 shadow-sm transition font-medium tracking-wide">HOME</a>
+                <a href="browse.html" class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/10 shadow-sm transition font-medium tracking-wide">BROWSE</a>
+                <a href="tissue.html" class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/10 shadow-sm transition font-medium tracking-wide">TISSUE</a>
+                <a href="manual.html" class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/10 shadow-sm transition font-medium tracking-wide">MANUAL</a>
+                <a href="downloads.html" class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/10 shadow-sm transition font-medium tracking-wide">DOWNLOADS</a>
+                <a href="contact.html" class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/10 shadow-sm transition font-medium tracking-wide">CONTACT US</a>
             </div>
         </div>
     </div>
@@ -43,58 +45,75 @@
 
     <main class="flex-grow">
         
-        <section class="bg-white pt-20 pb-12 border-b border-gray-100">
+        <section class="bg-white pt-20 pb-10 border-b border-gray-100">
             <div class="max-w-4xl mx-auto text-center px-4">
                 <h1 class="text-4xl sm:text-5xl font-black text-gray-900 mb-6 tracking-tight">
-                    ✨ 这里写一句最核心的一句话介绍
+                    ✨ 探索多物种组织特异性基因组数据
                 </h1>
                 <p class="text-xl text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    这里是副标题。可以用来简要描述这个网站未来的定位、想解决什么问题、或者展示什么核心成果。
+                    提供多维度、高分辨率的基因表达图谱及调控区域检索
                 </p>
-                <div class="flex justify-center space-x-4">
-                    <button class="bg-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-700 transition shadow-md">主要动作</button>
-                    <button class="bg-gray-100 text-gray-700 px-6 py-3 rounded-xl font-medium hover:bg-gray-200 transition">次要了解</button>
-                </div>
             </div>
         </section>
 
-        <section class="bg-gray-50 py-12 border-b border-gray-100">
-            <div class="max-w-3xl mx-auto px-4 text-center">
-                <div class="relative max-w-2xl mx-auto flex items-center bg-white rounded-2xl shadow-md border border-gray-200 p-1.5 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all">
-                    <span class="pl-4 text-gray-400 text-lg">🔍</span>
-                    <input type="text" 
-                           placeholder="输入您想检索的信息..." 
-                           class="w-full pl-3 pr-4 py-3 bg-transparent text-gray-700 focus:outline-none text-base">
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition shadow-sm whitespace-nowrap">
+        <section class="bg-gray-50 py-16 border-b border-gray-100">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <div class="relative max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch bg-white rounded-2xl shadow-md border border-gray-200 p-1.5 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all">
+                    
+                    <div class="relative flex items-center border-b sm:border-b-0 sm:border-r border-gray-200 px-3 bg-gray-50/50 rounded-t-xl sm:rounded-l-xl sm:rounded-t-none">
+                        <span class="text-gray-400 mr-1 text-sm">🌱</span>
+                        <select class="bg-transparent text-gray-700 font-medium py-3 pl-1 pr-6 focus:outline-none cursor-pointer text-sm w-full sm:w-44 appearance-none" style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 4px center; background-size: 10px auto;">
+                            <option value="all">All Species & Tissues</option>
+                            <optgroup label="🧬 Human (人类)">
+                                <option value="human_all">-- All Human Tissues</option>
+                                <option value="human_blood">Blood (血液)</option>
+                                <option value="human_brain">Brain (大脑)</option>
+                                <option value="human_liver">Liver (肝脏)</option>
+                                <option value="human_heart">Heart (心脏)</option>
+                            </optgroup>
+                            <optgroup label="🐭 Mouse (小鼠)">
+                                <option value="mouse_all">-- All Mouse Tissues</option>
+                                <option value="mouse_spleen">Spleen (脾脏)</option>
+                                <option value="mouse_lung">Lung (肺部)</option>
+                                <option value="mouse_kidney">Kidney (肾脏)</option>
+                                <option value="mouse_muscle">Muscle (肌肉)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="flex-grow flex items-center pl-3 pr-2 py-2 sm:py-0">
+                        <span class="text-gray-400 text-base">🔍</span>
+                        <input type="text" 
+                               placeholder="Search by gene symbol, gene ID, or functional region..." 
+                               class="w-full pl-3 pr-4 py-2 bg-transparent text-gray-700 focus:outline-none text-base">
+                    </div>
+                    
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-medium transition shadow-sm whitespace-nowrap m-1 sm:m-0">
                         Search
                     </button>
                 </div>
-                <p class="mt-3 text-xs sm:text-sm text-gray-400 tracking-wide">
-                    💡 提示：您可以检索 <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">gene symbol</span> (如: MYB), <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">gene ID</span> (如: Gh_A01G0010) 或 <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">functional region</span> (如: Chr1:10000-20000)
+
+                <p class="mt-4 text-xs sm:text-sm text-gray-400 tracking-wide">
+                    💡 提示：您可以检索 <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">gene symbol</span> (如: MYB), <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">gene ID</span> (如: ENSG000001) 或 <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">functional region</span> (如: Chr1:10000-20000)
                 </p>
             </div>
         </section>
 
         <section class="max-w-7xl mx-auto px-4 py-16">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 tracking-tight">🧭 内容分类 / 功能板块预留</h2>
-                <p class="mt-4 text-gray-500">（未来可以在下面放置不同的数据模块、工具或文章分类）</p>
-            </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <a href="tissue.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-lg mb-6">01</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">🧫 Tissue (组织/样本数据)</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">此处可用于展示不同组织部位的组学数据。点击此卡片也可以直接进入独立页面。</p>
                 </a>
-                <a href="download.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                <a href="downloads.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-lg mb-6">02</div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">💾 Download (数据下载中心)</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">💾 Downloads (数据下载中心)</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">提供基因组组装序列、转录组原始数据下载通道。点击此卡片也可以直接进入独立页面。</p>
                 </a>
-                <a href="manner.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                <a href="manual.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center font-bold text-lg mb-6">03</div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">🛠️ Manner (方法与技术规范)</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">🛠️ Manual (用户手册与方法)</h3>
                     <p class="text-gray-500 text-sm leading-relaxed">详细记录实验方法与生物信息分析工作流。点击此卡片也可以直接进入独立页面。</p>
                 </a>
             </div>
@@ -105,12 +124,12 @@
     <footer class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-sm">
             <div>
-                &copy; 2026 我的全网公开测试网页. 保留所有权利.
+                &copy; 2026 基因组学数据共享共享平台. 保留所有权利.
             </div>
             <div class="flex space-x-6">
-                <a href="#" class="hover:text-white transition">关于本站</a>
-                <a href="#" class="hover:text-white transition">更新日志</a>
-                <a href="contact.html" class="hover:text-white transition">联系支持 (Contact Us)</a>
+                <a href="index.html" class="hover:text-white transition">HOME</a>
+                <a href="browse.html" class="hover:text-white transition">BROWSE</a>
+                <a href="contact.html" class="hover:text-white transition">CONTACT US</a>
             </div>
         </div>
     </footer>
