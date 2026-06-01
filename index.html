@@ -8,19 +8,34 @@
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen justify-between">
 
-    <nav class="bg-white shadow-sm border-b border-gray-100">
+    <div class="bg-sky-100 border-b border-sky-200">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-sm text-sky-900">
+            <div class="font-medium flex items-center space-x-1">
+                <span>🌐</span> <span>欢迎访问学术数据与成果共享平台</span>
+            </div>
+            <div class="flex items-center space-x-2 mt-1 sm:mt-0">
+                <a href="tissue.html" class="bg-white/80 hover:bg-white px-3 py-1 rounded-md border border-sky-300/50 shadow-sm transition font-medium">Tissue</a>
+                <a href="download.html" class="bg-white/80 hover:bg-white px-3 py-1 rounded-md border border-sky-300/50 shadow-sm transition font-medium">Download</a>
+                <a href="manner.html" class="bg-white/80 hover:bg-white px-3 py-1 rounded-md border border-sky-300/50 shadow-sm transition font-medium">Manner</a>
+                <a href="contact.html" class="bg-white/80 hover:bg-white px-3 py-1 rounded-md border border-sky-300/50 shadow-sm transition font-medium">Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-            <div class="font-bold text-xl text-blue-600 tracking-wide">
-                [ 网站名字/LOGO占位 ]
+            <div class="font-bold text-xl text-blue-600 tracking-wide flex items-center space-x-2">
+                <span>🧬</span>
+                <span>[ 网站名字/LOGO占位 ]</span>
             </div>
             <div class="hidden md:flex space-x-8 text-gray-500 font-medium">
-                <a href="#" class="hover:text-blue-600 transition">板块 A</a>
-                <a href="#" class="hover:text-blue-600 transition">板块 B</a>
-                <a href="#" class="hover:text-blue-600 transition">板块 C</a>
+                <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">首页看板</a>
+                <a href="#" class="hover:text-blue-600 transition">研究动态</a>
+                <a href="#" class="hover:text-blue-600 transition">文献资源</a>
             </div>
             <div>
                 <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition shadow-sm">
-                    进入/执行
+                    进入系统
                 </button>
             </div>
         </div>
@@ -28,7 +43,7 @@
 
     <main class="flex-grow">
         
-        <section class="bg-white py-24 border-b border-gray-100">
+        <section class="bg-white pt-20 pb-12 border-b border-gray-100">
             <div class="max-w-4xl mx-auto text-center px-4">
                 <h1 class="text-4xl sm:text-5xl font-black text-gray-900 mb-6 tracking-tight">
                     ✨ 这里写一句最核心的一句话介绍
@@ -43,28 +58,45 @@
             </div>
         </section>
 
-        <section class="max-w-7xl mx-auto px-4 py-20">
-            <div class="text-center mb-16">
+        <section class="bg-gray-50 py-12 border-b border-gray-100">
+            <div class="max-w-3xl mx-auto px-4 text-center">
+                <div class="relative max-w-2xl mx-auto flex items-center bg-white rounded-2xl shadow-md border border-gray-200 p-1.5 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all">
+                    <span class="pl-4 text-gray-400 text-lg">🔍</span>
+                    <input type="text" 
+                           placeholder="输入您想检索的信息..." 
+                           class="w-full pl-3 pr-4 py-3 bg-transparent text-gray-700 focus:outline-none text-base">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-medium transition shadow-sm whitespace-nowrap">
+                        Search
+                    </button>
+                </div>
+                <p class="mt-3 text-xs sm:text-sm text-gray-400 tracking-wide">
+                    💡 提示：您可以检索 <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">gene symbol</span> (如: MYB), <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">gene ID</span> (如: Gh_A01G0010) 或 <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">functional region</span> (如: Chr1:10000-20000)
+                </p>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 py-16">
+            <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 tracking-tight">🧭 内容分类 / 功能板块预留</h2>
                 <p class="mt-4 text-gray-500">（未来可以在下面放置不同的数据模块、工具或文章分类）</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                <a href="tissue.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-lg mb-6">01</div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">板块一 (如: 数据看板/动态)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">一段简短的占位文本。你可以描述这个板块未来要呈现的具体数据指标、分析图表或者实时动态。</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">🧫 Tissue (组织/样本数据)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">此处可用于展示不同组织部位的组学数据。点击此卡片也可以直接进入独立页面。</p>
+                </a>
+                <a href="download.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-lg mb-6">02</div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">板块二 (如: 核心功能/工具)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">一段简短的占位文本。用来介绍你准备在这个位置提供什么线上处理工具、搜索功能或交互操作。</p>
-                </div>
-                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">💾 Download (数据下载中心)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">提供基因组组装序列、转录组原始数据下载通道。点击此卡片也可以直接进入独立页面。</p>
+                </a>
+                <a href="manner.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center font-bold text-lg mb-6">03</div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">板块三 (如: 文档/成果展示)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">一段简短的占位文本。适合用来放未来的项目简介、学术成果、合作链接或者相关参考资源。</p>
-                </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">🛠️ Manner (方法与技术规范)</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">详细记录实验方法与生物信息分析工作流。点击此卡片也可以直接进入独立页面。</p>
+                </a>
             </div>
         </section>
 
@@ -78,7 +110,7 @@
             <div class="flex space-x-6">
                 <a href="#" class="hover:text-white transition">关于本站</a>
                 <a href="#" class="hover:text-white transition">更新日志</a>
-                <a href="#" class="hover:text-white transition">联系支持</a>
+                <a href="contact.html" class="hover:text-white transition">联系支持 (Contact Us)</a>
             </div>
         </div>
     </footer>
