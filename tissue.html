@@ -6,137 +6,83 @@
     <title>Tissue Atlas - 空间转录组学全景图谱</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 彻底消除浏览器原生点击/激活时强加的任何蓝色或黑色流氓光圈、外边框 */
-        *, *:focus, *:active {
-            outline: none !important;
-            -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-        }
+        *, *:focus, *:active { outline: none !important; }
         
-        /* 每一个独立裁剪层级的平滑缩放动画 */
+        /* 每一个独立器官图层的平滑原位变焦动画 */
         .organ-layer {
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-            transform-origin: var(--zoom-x, 50%) var(--zoom-y, 50%);
-            opacity: 0;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, filter 0.3s ease;
+            opacity: 0; 
+            pointer-events: none;
         }
 
-        /* 当被左侧遥控激活时，对应的器官局部独立平滑变大 1.15 倍 */
+        /* 鼠标移入卡片时，对应的透明小器官在真实生理位置原地放大并高亮 */
         .layer-active {
             transform: scale(1.15) !important;
             opacity: 1 !important;
-            z-index: 40 !important;
+            z-index: 50 !important;
+            filter: drop-shadow(0 4px 14px rgba(59, 130, 246, 0.65)) brightness(1.05);
         }
 
-        /* 美化左侧菜单滚动条 */
         .custom-scroll::-webkit-scrollbar { width: 5px; }
-        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen justify-between">
+<body class="bg-gray-50 flex flex-col min-h-screen">
 
     <div class="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-950 border-b border-blue-800 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center text-sm text-white">
-            <div class="font-medium flex items-center space-x-2 tracking-wide text-blue-200">
-                <span>🧬</span> <span>Multi-Organ Computational Genomics & Spatial Transcriptomics Platform</span>
-            </div>
-            <a href="index.html" class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/10 shadow-sm transition font-medium tracking-wide">HOME</a>
+        <div class="max-w-7xl mx-auto px-4 py-3 text-sm text-white">
+            <div class="font-medium tracking-wide text-blue-200">🧬 Multi-Organ Computational Genomics & Spatial Transcriptomics Platform</div>
         </div>
     </div>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
-        <div class="flex flex-col lg:flex-row items-stretch justify-center gap-8 bg-white p-6 rounded-3xl border border-gray-100 shadow-xl">
+    <main class="flex-grow max-w-7xl w-full mx-auto p-8">
+        <div class="flex flex-col lg:flex-row gap-8 bg-white p-6 rounded-3xl border border-gray-100 shadow-xl">
             
-            <div class="w-full lg:w-5/12 space-y-2 pr-2 overflow-y-auto custom-scroll" style="max-height: 620px;">
-                <div class="border-b border-gray-200 pb-2 mb-4">
-                    <h3 class="text-md font-bold text-gray-800 tracking-tight">📌 Human Anatomical Atlas</h3>
-                    <p class="text-xs text-gray-400 mt-1">Hover over cards to view isolated regional organ scaling.</p>
-                </div>
-                
-                <div data-target="brain" class="tissue-card border border-gray-200 bg-white p-3 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition flex items-center justify-between group">
-                    <span class="text-xs font-medium text-gray-700 group-hover:text-blue-600 flex items-center space-x-2"><span>🧠</span><span>Brain (脑组织)</span></span>
-                    <span class="text-[10px] text-gray-300 group-hover:text-blue-500">&rarr;</span>
-                </div>
-
-                <div data-target="lung" class="tissue-card border border-gray-200 bg-white p-3 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition flex items-center justify-between group">
-                    <span class="text-xs font-medium text-gray-700 group-hover:text-blue-600 flex items-center space-x-2"><span>🫁</span><span>Lungs (双侧肺叶)</span></span>
-                    <span class="text-[10px] text-gray-300 group-hover:text-blue-500">&rarr;</span>
-                </div>
-
-                <div data-target="heart" class="tissue-card border border-gray-200 bg-white p-3 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition flex items-center justify-between group">
-                    <span class="text-xs font-medium text-gray-700 group-hover:text-blue-600 flex items-center space-x-2"><span>❤️</span><span>Heart (心脏)</span></span>
-                    <span class="text-[10px] text-gray-300 group-hover:text-blue-500">&rarr;</span>
-                </div>
-
-                <div data-target="liver" class="tissue-card border border-gray-200 bg-white p-3 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition flex items-center justify-between group">
-                    <span class="text-xs font-medium text-gray-700 group-hover:text-blue-600 flex items-center space-x-2"><span>🪵</span><span>Liver (肝脏)</span></span>
-                    <span class="text-[10px] text-gray-300 group-hover:text-blue-500">&rarr;</span>
-                </div>
-
-                <div data-target="stomach" class="tissue-card border border-gray-200 bg-white p-3 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition flex items-center justify-between group">
-                    <span class="text-xs font-medium text-gray-700 group-hover:text-blue-600 flex items-center space-x-2"><span>🥣</span><span>Stomach (胃)</span></span>
-                    <span class="text-[10px] text-gray-300 group-hover:text-blue-500">&rarr;</span>
-                </div>
-
-                <div data-target="spleen" class="tissue-card border border-gray-200 bg-white p-3 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition flex items-center justify-between group">
-                    <span class="text-xs font-medium text-gray-700 group-hover:text-blue-600 flex items-center space-x-2"><span>🍇</span><span>Spleen (脾脏)</span></span>
-                    <span class="text-[10px] text-gray-300 group-hover:text-blue-500">&rarr;</span>
-                </div>
-
-                <div data-target="intestine" class="tissue-card border border-gray-200 bg-white p-3 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition flex items-center justify-between group">
-                    <span class="text-xs font-medium text-gray-700 group-hover:text-blue-600 flex items-center space-x-2"><span>⭕</span><span>Intestines (肠道系统)</span></span>
-                    <span class="text-[10px] text-gray-300 group-hover:text-blue-500">&rarr;</span>
+            <div class="w-full lg:w-5/12 overflow-y-auto custom-scroll" style="max-height: 640px;">
+                <h3 class="font-bold text-gray-800 mb-4">📌 Human Anatomical Atlas</h3>
+                <div id="cards-container" class="space-y-2">
+                    <div data-target="marrow" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Bone Marrow (骨髓/脊椎)</div>
+                    <div data-target="brain" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Brain (脑组织)</div>
+                    <div data-target="tongue" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Tongue (舌头)</div>
+                    <div data-target="oesophagus" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Oesophagus (食道)</div>
+                    <div data-target="lung" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Lungs (双侧肺叶)</div>
+                    <div data-target="heart" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Heart (心脏)</div>
+                    <div data-target="liver" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Liver (肝脏)</div>
+                    <div data-target="stomach" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Stomach (胃)</div>
+                    <div data-target="pancreas" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Pancreas (胰腺)</div>
+                    <div data-target="spleen" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Spleen (脾脏)</div>
+                    <div data-target="small-intestine" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Small Intestine (小肠)</div>
+                    <div data-target="large-intestine" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Large Intestine (大肠)</div>
                 </div>
             </div>
 
-            <div class="w-full lg:w-7/12 flex justify-center bg-white p-2 rounded-3xl border border-gray-100 shadow-inner relative max-w-sm mx-auto overflow-hidden" style="height: 640px;">
-                
-                <img src="quan.png" alt="Base Anatomy Grid" class="absolute inset-0 w-full h-full object-contain p-4 opacity-100 select-none pointer-events-none">
+            <div class="w-full lg:w-7/12 flex justify-center bg-white shadow-inner relative max-w-md mx-auto" style="height: 640px;">
+                <div class="relative w-[360px] h-[580px] mt-10 overflow-visible">
+                    <img src="quan2.png" class="absolute inset-0 w-full h-full object-contain z-10">
 
-                <img id="layer-brain" src="quan.png" class="organ-layer absolute inset-0 w-full h-full object-contain p-4 pointer-events-none" 
-                     style="--zoom-x: 52%; --zoom-y: 9%; --zoom-r: 8%; clip-path: circle(var(--zoom-r) at var(--zoom-x) var(--zoom-y));">
-
-                <img id="layer-lung" src="quan.png" class="organ-layer absolute inset-0 w-full h-full object-contain p-4 pointer-events-none" 
-                     style="--zoom-x: 50%; --zoom-y: 36%; --zoom-r: 14%; clip-path: circle(var(--zoom-r) at var(--zoom-x) var(--zoom-y));">
-
-                <img id="layer-heart" src="quan.png" class="organ-layer absolute inset-0 w-full h-full object-contain p-4 pointer-events-none" 
-                     style="--zoom-x: 53%; --zoom-y: 36%; --zoom-r: 5%; clip-path: circle(var(--zoom-r) at var(--zoom-x) var(--zoom-y));">
-
-                <img id="layer-liver" src="quan.png" class="organ-layer absolute inset-0 w-full h-full object-contain p-4 pointer-events-none" 
-                     style="--zoom-x: 40%; --zoom-y: 54%; --zoom-r: 10%; clip-path: circle(var(--zoom-r) at var(--zoom-x) var(--zoom-y));">
-
-                <img id="layer-stomach" src="quan.png" class="organ-layer absolute inset-0 w-full h-full object-contain p-4 pointer-events-none" 
-                     style="--zoom-x: 54%; --zoom-y: 59%; --zoom-r: 7%; clip-path: circle(var(--zoom-r) at var(--zoom-x) var(--zoom-y));">
-
-                <img id="layer-spleen" src="quan.png" class="organ-layer absolute inset-0 w-full h-full object-contain p-4 pointer-events-none" 
-                     style="--zoom-x: 69%; --zoom-y: 57%; --zoom-r: 7%; clip-path: circle(var(--zoom-r) at var(--zoom-x) var(--zoom-y));">
-
-                <img id="layer-intestine" src="quan.png" class="organ-layer absolute inset-0 w-full h-full object-contain p-4 pointer-events-none" 
-                     style="--zoom-x: 50%; --zoom-y: 81%; --zoom-r: 18%; clip-path: circle(var(--zoom-r) at var(--zoom-x) var(--zoom-y));">
-
+                    <img id="layer-marrow" src="bone.png" class="organ-layer absolute z-20" style="top: 152px; left: 170px; width: 85px;">
+                    <img id="layer-brain" src="brain.png" class="organ-layer absolute z-20" style="top: 0px; left: 132px; width: 92px;">
+                    <img id="layer-tongue" src="Tongue.png" class="organ-layer absolute z-20" style="top: 92px; left: 136px; width: 45px;">
+                    <img id="layer-oesophagus" src="Oesophagus.png" class="organ-layer absolute z-20" style="top: 120px; left: 172px; width: 9px;">
+                    <img id="layer-lung" src="lung.png" class="organ-layer absolute z-20" style="top: 156px; left: 118px; width: 111px;">
+                    <img id="layer-heart" src="heart.png" class="organ-layer absolute z-30" style="top: 148px; left: 158px; width: 44px;">
+                    <img id="layer-liver" src="liver.png" class="organ-layer absolute z-20" style="top: 244px; left: 112px; width: 100px;">
+                    <img id="layer-stomach" src="stomach.png" class="organ-layer absolute z-20" style="top: 260px; left: 126px; width: 94px;">
+                    <img id="layer-pancreas" src="Pancreas.png" class="organ-layer absolute z-20" style="top: 314px; left: 142px; width: 80px;">
+                    <img id="layer-spleen" src="spleen.png" class="organ-layer absolute z-20" style="top: 286px; left: 210px; width: 24px;">
+                    <img id="layer-small-intestine" src="Small intestine.png" class="organ-layer absolute z-20" style="top: 368px; left: 116px; width: 100px;">
+                    <img id="layer-large-intestine" src="Large intestine.png" class="organ-layer absolute z-20" style="top: 350px; left: 112px; width: 114px;">
+                </div>
             </div>
-
         </div>
     </main>
 
-    <footer class="bg-slate-900 text-slate-500 py-4 text-center text-[10px] font-mono border-t border-slate-800">
-        &copy; 2026 PLATFORM GENOMICS. LOCKED CO-AXIAL MATRIX ACTIVE.
-    </footer>
-
     <script>
-        const tissueCards = document.querySelectorAll('.tissue-card');
-
-        tissueCards.forEach(card => {
-            const targetName = card.getAttribute('data-target');
-            const targetLayer = document.getElementById(`layer-${targetName}`);
-
-            card.addEventListener('mouseenter', () => {
-                if (targetLayer) targetLayer.classList.add('layer-active');
-            });
-            card.addEventListener('mouseleave', () => {
-                if (targetLayer) targetLayer.classList.remove('layer-active');
-            });
+        document.querySelectorAll('.tissue-card').forEach(card => {
+            const layer = document.getElementById(`layer-${card.getAttribute('data-target')}`);
+            card.addEventListener('mouseenter', () => { if (layer) layer.classList.add('layer-active'); });
+            card.addEventListener('mouseleave', () => { if (layer) layer.classList.remove('layer-active'); });
         });
     </script>
-
 </body>
 </html>
