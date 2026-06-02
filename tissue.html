@@ -3,137 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tissue Atlas - 纯代码版</title>
+    <title>Tissue Atlas - 高科技学术版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 核心动画：控制代码画的器官平滑放大 */
+        /* 核心动画：控制器官平滑无缝放大 */
         .organ-path {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
+            stroke-width: 1.5;
+            stroke-linejoin: round;
         }
-        /* 鼠标划过对应组织名或图形时的放大高亮样式 */
+        
+        /* 鼠标悬停或激活时的超炫高科技荧光放大特效 */
         .organ-active {
-            transform: scale(1.25) !important;
-            fill: #3b82f6 !important; /* 科技蓝 */
-            filter: drop-shadow(0 10px 15px rgb(59 130 246 / 0.5));
+            transform: scale(1.2) !important;
+            fill: url(#selected-gradient) !important;
+            stroke: #60a5fa !important;
+            stroke-width: 2.5;
+            filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 10px rgba(96, 165, 250, 0.5)) !important;
+            z-index: 50;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen justify-between">
+<body class="bg-slate-950 text-slate-100 flex flex-col min-h-screen justify-between">
 
-    <!-- 顶部深蓝色功能条 -->
-    <div class="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-950 border-b border-blue-800 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center text-sm text-white">
-            <div class="font-medium flex items-center space-x-2 text-blue-200">
-                <span>🌐</span> <span>Multi-Species Computational Genomics Platform</span>
+    <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border-b border-slate-800 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center text-sm">
+            <div class="font-medium flex items-center space-x-2 text-blue-400">
+                <span class="animate-pulse">🧬</span> <span class="tracking-widest font-mono text-xs">SPATIAL TRANSCRIPTOMICS ANALYSIS PORTAL</span>
             </div>
-            <a href="index.html" class="bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/10 transition font-medium">HOME</a>
+            <a href="index.html" class="bg-slate-800/80 hover:bg-slate-700/80 text-blue-400 px-3 py-1.5 rounded-md border border-slate-700 transition font-mono text-xs">HOME</a>
         </div>
     </div>
 
-    <!-- 主体：左边文字框，右边纯代码 SVG -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-12">
-        <div class="flex flex-col lg:flex-row items-center justify-center gap-12 bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
+        <div class="flex flex-col lg:flex-row items-center justify-center gap-12 bg-slate-900/40 p-8 rounded-3xl border border-slate-800/60 shadow-2xl backdrop-blur-md">
             
-            <!-- 左侧：组织卡片 -->
             <div class="w-full lg:w-2/5 space-y-3">
-                <h3 class="text-lg font-bold text-gray-700 border-b pb-2 mb-4">📌 Human Organs List</h3>
+                <div class="border-b border-slate-800 pb-3 mb-6">
+                    <h3 class="text-md font-mono text-blue-400 tracking-wider">SELECT TARGET TISSUE</h3>
+                    <p class="text-xs text-slate-500 mt-1">Spatial Expression & Single-Cell Annotation Maps</p>
+                </div>
                 
-                <div data-target="brain" class="tissue-card border border-gray-200 bg-white p-4 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-all flex items-center justify-between group">
-                    <span class="font-semibold text-gray-700 group-hover:text-blue-600">🧠 Brain (大脑)</span>
-                    <span class="text-xs text-gray-400">&rarr;</span>
+                <div data-target="brain" class="tissue-card border border-slate-800/80 bg-slate-950/60 p-4 rounded-xl shadow-md cursor-pointer hover:border-blue-500/80 hover:bg-blue-950/20 transition-all duration-300 flex items-center justify-between group">
+                    <span class="font-mono text-sm text-slate-300 group-hover:text-blue-400 transition">01. Brain / Cerebrum (脑组织)</span>
+                    <span class="font-mono text-xs text-slate-600 group-hover:text-blue-400 transition">&gt;&gt;</span>
                 </div>
 
-                <div data-target="lung" class="tissue-card border border-gray-200 bg-white p-4 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-all flex items-center justify-between group">
-                    <span class="font-semibold text-gray-700 group-hover:text-blue-600">🫁 Lung (肺部)</span>
-                    <span class="text-xs text-gray-400">&rarr;</span>
+                <div data-target="lung" class="tissue-card border border-slate-800/80 bg-slate-950/60 p-4 rounded-xl shadow-md cursor-pointer hover:border-blue-500/80 hover:bg-blue-950/20 transition-all duration-300 flex items-center justify-between group">
+                    <span class="font-mono text-sm text-slate-300 group-hover:text-blue-400 transition">02. Lung / Pulmonary (肺部)</span>
+                    <span class="font-mono text-xs text-slate-600 group-hover:text-blue-400 transition">&gt;&gt;</span>
                 </div>
 
-                <div data-target="heart" class="tissue-card border border-gray-200 bg-white p-4 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-all flex items-center justify-between group">
-                    <span class="font-semibold text-gray-700 group-hover:text-blue-600">❤️ Heart (心脏)</span>
-                    <span class="text-xs text-gray-400">&rarr;</span>
+                <div data-target="heart" class="tissue-card border border-slate-800/80 bg-slate-950/60 p-4 rounded-xl shadow-md cursor-pointer hover:border-blue-500/80 hover:bg-blue-950/20 transition-all duration-300 flex items-center justify-between group">
+                    <span class="font-semibold font-mono text-sm text-slate-300 group-hover:text-blue-400 transition">03. Heart / Myocardium (心脏)</span>
+                    <span class="font-mono text-xs text-slate-600 group-hover:text-blue-400 transition">&gt;&gt;</span>
                 </div>
 
-                <div data-target="liver" class="tissue-card border border-gray-200 bg-white p-4 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-all flex items-center justify-between group">
-                    <span class="font-semibold text-gray-700 group-hover:text-blue-600">🪵 Liver (肝脏)</span>
-                    <span class="text-xs text-gray-400">&rarr;</span>
+                <div data-target="liver" class="tissue-card border border-slate-800/80 bg-slate-950/60 p-4 rounded-xl shadow-md cursor-pointer hover:border-blue-500/80 hover:bg-blue-950/20 transition-all duration-300 flex items-center justify-between group">
+                    <span class="font-mono text-sm text-slate-300 group-hover:text-blue-400 transition">04. Liver / Hepatic (肝脏)</span>
+                    <span class="font-mono text-xs text-slate-600 group-hover:text-blue-400 transition">&gt;&gt;</span>
                 </div>
 
-                <div data-target="kidney" class="tissue-card border border-gray-200 bg-white p-4 rounded-xl shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50/50 transition-all flex items-center justify-between group">
-                    <span class="font-semibold text-gray-700 group-hover:text-blue-600">🧼 Kidney (肾脏)</span>
-                    <span class="text-xs text-gray-400">&rarr;</span>
+                <div data-target="kidney" class="tissue-card border border-slate-800/80 bg-slate-950/60 p-4 rounded-xl shadow-md cursor-pointer hover:border-blue-500/80 hover:bg-blue-950/20 transition-all duration-300 flex items-center justify-between group">
+                    <span class="font-mono text-sm text-slate-300 group-hover:text-blue-400 transition">05. Kidney / Renal Cortex (肾脏)</span>
+                    <span class="font-mono text-xs text-slate-600 group-hover:text-blue-400 transition">&gt;&gt;</span>
                 </div>
             </div>
 
-            <!-- 右侧：全代码手绘的精细 SVG 人体和器官 -->
-            <div class="w-full lg:w-3/5 flex justify-center bg-slate-950 p-8 rounded-2xl relative shadow-inner">
-                <svg width="360" height="520" viewBox="0 0 360 520" class="overflow-visible">
+            <div class="w-full lg:w-3/5 flex justify-center bg-slate-950 p-8 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden">
+                
+                <div class="absolute inset-0 opacity-5 pointer-events-none bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+                <svg width="380" height="540" viewBox="0 0 380 540" class="overflow-visible relative z-10">
                     
-                    <!-- 1. 纯代码画：人体中枢骨架剪影 (中性灰色背景) -->
-                    <path d="M180,20 C145,20 135,45 135,65 C135,90 155,95 160,110 C140,120 110,135 90,160 C70,185 75,230 75,260 C75,270 85,270 85,260 C85,230 80,195 100,175 C115,160 135,150 155,145 L155,320 C140,340 120,370 100,430 C80,490 85,500 95,500 C105,500 115,480 130,440 C145,400 165,370 180,360 C195,370 215,400 230,440 C245,480 255,500 265,500 C275,500 280,490 260,430 C240,370 220,340 205,320 L205,145 C225,150 245,160 260,175 C280,195 275,230 275,260 C275,270 285,270 285,260 C285,230 290,185 270,160 C250,135 220,120 200,110 C205,95 225,90 225,65 C225,45 215,20 180,20 Z" fill="#1e293b" />
+                    <defs>
+                        <linearGradient id="organ-default" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1e293b" />
+                            <stop offset="100%" stop-color="#334155" />
+                        </linearGradient>
+                        <linearGradient id="selected-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#60a5fa" />
+                            <stop offset="100%" stop-color="#1d4ed8" />
+                        </linearGradient>
+                        
+                        <linearGradient id="brain-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f87171"/><stop offset="100%" stop-color="#991b1b"/></linearGradient>
+                        <linearGradient id="lung-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f472b6"/><stop offset="100%" stop-color="#9d174d"/></linearGradient>
+                        <linearGradient id="heart-grad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fb7185"/><stop offset="100%" stop-color="#be123c"/></linearGradient>
+                        <linearGradient id="liver-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#c2410c"/></linearGradient>
+                        <linearGradient id="kidney-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fde047"/><stop offset="100%" stop-color="#a16207"/></linearGradient>
+                    </defs>
                     
-                    <!-- 2. 纯代码器官：Brain (大脑) -->
-                    <path id="organ-brain" class="organ-path" d="M180,25 C155,25 142,40 142,58 C142,72 152,82 165,82 C170,82 175,78 180,82 C185,78 190,82 195,82 C208,82 218,72 218,58 C218,40 205,25 180,25 Z" fill="#fca5a5" transform-origin="180 55" />
+                    <g stroke="#334155" stroke-dasharray="2 4" stroke-width="1" opacity="0.4">
+                        <line x1="190" y1="0" x2="190" y2="540" />
+                        <line x1="0" y1="180" x2="380" y2="180" />
+                        <line x1="0" y1="290" x2="380" y2="290" />
+                        <circle cx="190" cy="180" r="140" fill="none" />
+                    </g>
                     
-                    <!-- 3. 纯代码器官：Lung (肺部 - 左右双叶成组) -->
-                    <g id="organ-lung" class="organ-path" fill="#fbcfe8" transform-origin="180 165">
-                        <!-- 左肺 -->
-                        <path d="M172,130 C155,125 125,135 125,170 C125,205 150,215 170,200 C175,195 175,145 172,130 Z" />
-                        <!-- 右肺 -->
-                        <path d="M188,130 C205,125 235,135 235,170 C235,205 210,215 190,200 C185,195 185,145 188,130 Z" />
+                    <path d="M190,15 C140,15 130,50 130,75 C130,105 155,110 160,125 C135,135 105,155 85,185 C60,215 65,265 65,300 C65,315 75,315 75,300 C75,265 70,225 90,200 C110,180 135,170 155,165 L155,340 C140,365 115,400 95,465 C75,530 80,540 90,540 C105,540 115,515 130,470 C145,425 165,395 190,385 C215,395 235,425 250,470 C265,515 275,540 290,540 C300,540 305,530 285,465 C265,400 240,365 225,340 L225,165 C245,170 270,180 290,200 C310,225 305,265 305,300 C305,315 315,315 315,300 C315,265 320,215 295,185 C275,155 245,135 220,125 C225,110 250,105 250,75 C250,50 240,15 190,15 Z" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
+                    
+                    <path id="organ-brain" class="organ-path" d="M190,22 C170,22 150,32 145,55 C140,75 152,90 168,90 C175,90 178,85 183,87 C185,82 188,85 190,85 C192,85 195,82 197,87 C202,85 205,90 212,90 C228,90 240,75 235,55 C230,32 210,22 190,22 Z M165,45 C175,40 185,55 190,45 C195,55 205,40 215,45 C210,60 200,55 190,65 C180,55 170,60 165,45 Z" fill="url(#brain-grad)" stroke="rgba(248,113,113,0.3)" transform-origin="190 56" />
+                    
+                    <g id="organ-lung" class="organ-path" fill="url(#lung-grad)" stroke="rgba(244,114,182,0.3)" transform-origin="190 180">
+                        <path d="M182,140 C170,135 130,140 120,180 C110,220 145,240 172,225 C180,220 185,195 182,175 C180,165 185,150 182,140 Z" />
+                        <path d="M198,140 C210,135 250,140 260,180 C270,220 235,240 208,225 C198,218 195,180 198,140 Z" />
+                        <path d="M190,125 L190,155 L175,170 M190,155 L205,170" stroke="#475569" stroke-width="2" fill="none" opacity="0.6"/>
                     </g>
 
-                    <!-- 4. 纯代码器官：Heart (心脏) -->
-                    <path id="organ-heart" class="organ-path" d="M180,150 C180,150 160,135 160,155 C160,175 180,195 180,195 C180,195 200,175 200,155 C200,135 180,150 180,150 Z" fill="#fda4af" transform-origin="180 165" />
+                    <path id="organ-heart" class="organ-path" d="M190,158 C190,158 178,140 170,140 C160,140 155,152 160,168 C168,190 188,215 192,218 C194,218 210,195 215,180 C220,165 218,150 208,143 C198,135 195,150 190,158 Z M185,140 C185,130 195,125 195,140 Z M193,138 C195,128 202,128 200,141 Z" fill="url(#heart-grad)" stroke="rgba(251,113,133,0.3)" transform-origin="190 180" />
                     
-                    <!-- 5. 纯代码器官：Liver (肝脏) -->
-                    <path id="organ-liver" class="organ-path" d="M135,215 C135,215 175,210 195,220 C205,225 190,245 170,245 C150,245 130,230 135,215 Z" fill="#fdba74" transform-origin="165 230" />
-                    
-                    <!-- 6. 纯代码器官：Kidney (肾脏 - 左右成组) -->
-                    <g id="organ-kidney" class="organ-path" fill="#fed7aa" transform-origin="180 270">
-                        <!-- 左肾 -->
-                        <path d="M145,255 C135,255 135,285 145,285 C152,285 152,255 145,255 Z" />
-                        <!-- 右肾 -->
-                        <path d="M215,255 C225,255 225,285 215,285 C208,285 208,255 215,255 Z" />
-                    </g>
-                </svg>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="bg-gray-900 text-gray-400 py-6 text-center text-sm border-t border-gray-800">
-        &copy; 2026 基因组学数据共享共享平台. 保留所有权利.
-    </footer>
-
-    <!-- JavaScript 联动逻辑 -->
-    <script>
-        const tissueCards = document.querySelectorAll('.tissue-card');
-        tissueCards.forEach(card => {
-            const targetName = card.getAttribute('data-target');
-            const targetSvgOrgan = document.getElementById(`organ-${targetName}`);
-
-            // 划过文字卡片 -> 对应的代码图形放大
-            card.addEventListener('mouseenter', () => {
-                if (targetSvgOrgan) targetSvgOrgan.classList.add('organ-active');
-            });
-            card.addEventListener('mouseleave', () => {
-                if (targetSvgOrgan) targetSvgOrgan.classList.remove('organ-active');
-            });
-
-            // 反向联动：划过代码图形 -> 文字卡片亮起
-            if (targetSvgOrgan) {
-                targetSvgOrgan.addEventListener('mouseenter', () => {
-                    card.classList.add('border-blue-500', 'bg-blue-50/50');
-                });
-                targetSvgOrgan.addEventListener('mouseleave', () => {
-                    card.classList.remove('border-blue-500', 'bg-blue-50/50');
-                });
-            }
-        });
-    </script>
-
-</body>
-</html>
+                    <path id="organ-liver" class="organ-path" d="M135,232 C130,235
