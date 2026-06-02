@@ -6,23 +6,9 @@
     <title>Tissue Atlas - 空间转录组学全景图谱</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        *, *:focus, *:active { outline: none !important; }
-        
-        /* 每一个独立器官图层的平滑原位变焦动画 */
-        .organ-layer {
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, filter 0.3s ease;
-            opacity: 0; 
-            pointer-events: none;
-        }
-
-        /* 鼠标移入卡片时，对应的透明小器官在真实生理位置原地放大并高亮 */
-        .layer-active {
-            transform: scale(1.15) !important;
-            opacity: 1 !important;
-            z-index: 50 !important;
-            filter: drop-shadow(0 4px 14px rgba(59, 130, 246, 0.65)) brightness(1.05);
-        }
-
+        *, *:focus, *:active { outline: none !important; -webkit-tap-highlight-color: rgba(0,0,0,0) !important; }
+        .organ-layer { transition: transform 0.25s, opacity 0.25s, filter 0.3s; opacity: 0; pointer-events: none; }
+        .layer-active { transform: scale(1.15) !important; opacity: 1 !important; z-index: 50 !important; filter: drop-shadow(0 4px 14px rgba(59, 130, 246, 0.65)) brightness(1.05); }
         .custom-scroll::-webkit-scrollbar { width: 5px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
     </style>
@@ -38,40 +24,51 @@
     <main class="flex-grow max-w-7xl w-full mx-auto p-8">
         <div class="flex flex-col lg:flex-row gap-8 bg-white p-6 rounded-3xl border border-gray-100 shadow-xl">
             
-            <div class="w-full lg:w-5/12 overflow-y-auto custom-scroll" style="max-height: 640px;">
-                <h3 class="font-bold text-gray-800 mb-4">📌 Human Anatomical Atlas</h3>
-                <div id="cards-container" class="space-y-2">
-                    <div data-target="marrow" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Bone Marrow (骨髓/脊椎)</div>
-                    <div data-target="brain" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Brain (脑组织)</div>
-                    <div data-target="tongue" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Tongue (舌头)</div>
-                    <div data-target="oesophagus" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Oesophagus (食道)</div>
-                    <div data-target="lung" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Lungs (双侧肺叶)</div>
-                    <div data-target="heart" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Heart (心脏)</div>
-                    <div data-target="liver" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Liver (肝脏)</div>
-                    <div data-target="stomach" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Stomach (胃)</div>
-                    <div data-target="pancreas" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Pancreas (胰腺)</div>
-                    <div data-target="spleen" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Spleen (脾脏)</div>
-                    <div data-target="small-intestine" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Small Intestine (小肠)</div>
-                    <div data-target="large-intestine" class="tissue-card p-3 border rounded-xl hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition">Large Intestine (大肠)</div>
+            <div class="w-full lg:w-5/12 overflow-y-auto custom-scroll" style="max-height: 700px;">
+                <div class="border-b border-gray-200 pb-2 mb-4">
+                    <h3 class="text-md font-bold text-gray-800 tracking-tight">📌 Human Anatomical Atlas</h3>
+                </div>
+                
+                <div id="menu-container" class="space-y-2 grid grid-cols-2 gap-2">
+                    <div data-target="marrow" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">🦴 Bone Marrow</div>
+                    <div data-target="brain" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">🧠 Brain</div>
+                    <div data-target="tongue" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">👅 Tongue</div>
+                    <div data-target="oesophagus" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">🧣 Oesophagus</div>
+                    <div data-target="lung" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">🫁 Lungs</div>
+                    <div data-target="heart" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">❤️ Heart</div>
+                    <div data-target="liver" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">🪵 Liver</div>
+                    <div data-target="stomach" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">🥣 Stomach</div>
+                    <div data-target="pancreas" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">🧈 Pancreas</div>
+                    <div data-target="spleen" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">🍇 Spleen</div>
+                    <div data-target="small-intestine" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">⭕ Small Intestine</div>
+                    <div data-target="large-intestine" class="tissue-card border border-gray-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-semibold text-xs text-gray-700">〰️ Large Intestine</div>
+                    <div data-target="testis" class="tissue-card border-2 border-blue-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-bold text-xs text-blue-700">🌰 Testis</div>
+                    <div data-target="prostate" class="tissue-card border-2 border-blue-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-bold text-xs text-blue-700">🔘 Prostate</div>
+                    <div data-target="uterus" class="tissue-card border-2 border-blue-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-bold text-xs text-blue-700">🤰 Uterus</div>
+                    <div data-target="ovary" class="tissue-card border-2 border-blue-200 bg-white p-3 rounded-lg shadow-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition font-bold text-xs text-blue-700">🌻 Ovary</div>
                 </div>
             </div>
 
-            <div class="w-full lg:w-7/12 flex justify-center bg-white shadow-inner relative max-w-md mx-auto" style="height: 640px;">
-                <div class="relative w-[360px] h-[580px] mt-10 overflow-visible">
-                    <img src="quan2.png" class="absolute inset-0 w-full h-full object-contain z-10">
+            <div class="w-full lg:w-7/12 flex justify-center bg-white shadow-inner relative max-w-md mx-auto" style="height: 700px;">
+                <div class="relative w-full h-auto mt-10 overflow-visible flex items-center justify-center">
+                    <img src="quan2.png" class="absolute inset-0 w-full h-full object-contain z-10 select-none pointer-events-none">
 
-                    <img id="layer-marrow" src="bone.png" class="organ-layer absolute z-20" style="top: 152px; left: 170px; width: 85px;">
-                    <img id="layer-brain" src="brain.png" class="organ-layer absolute z-20" style="top: 0px; left: 132px; width: 92px;">
-                    <img id="layer-tongue" src="Tongue.png" class="organ-layer absolute z-20" style="top: 92px; left: 136px; width: 45px;">
-                    <img id="layer-oesophagus" src="Oesophagus.png" class="organ-layer absolute z-20" style="top: 120px; left: 172px; width: 9px;">
-                    <img id="layer-lung" src="lung.png" class="organ-layer absolute z-20" style="top: 156px; left: 118px; width: 111px;">
-                    <img id="layer-heart" src="heart.png" class="organ-layer absolute z-30" style="top: 148px; left: 158px; width: 44px;">
-                    <img id="layer-liver" src="liver.png" class="organ-layer absolute z-20" style="top: 244px; left: 112px; width: 100px;">
-                    <img id="layer-stomach" src="https://raw.githubusercontent.com/xmeng1544-eng/database/main/Stomach.png" class="organ-layer absolute z-20" style="top: 260px; left: 126px; width: 94px;">
-                    <img id="layer-pancreas" src="Pancreas.png" class="organ-layer absolute z-20" style="top: 314px; left: 142px; width: 80px;">
-                    <img id="layer-spleen" src="spleen.png" class="organ-layer absolute z-20" style="top: 286px; left: 210px; width: 24px;">
-                    <img id="layer-small-intestine" src="Small intestine.png" class="organ-layer absolute z-20" style="top: 368px; left: 116px; width: 100px;">
-                    <img id="layer-large-intestine" src="Large intestine.png" class="organ-layer absolute z-20" style="top: 350px; left: 112px; width: 114px;">
+                    <img id="layer-marrow" src="bone.png" class="organ-layer absolute" style="top: 212px; left: 186px; width: 85px;">
+                    <img id="layer-brain" src="brain.png" class="organ-layer absolute" style="top: 0px; left: 132px; width: 92px;">
+                    <img id="layer-tongue" src="Tongue.png" class="organ-layer absolute" style="top: 106px; left: 132px; width: 45px;">
+                    <img id="layer-oesophagus" src="Oesophagus.png" class="organ-layer absolute" style="top: 120px; left: 180px; width: 9px;">
+                    <img id="layer-lung" src="lung.png" class="organ-layer absolute" style="top: 182px; left: 128px; width: 111px;">
+                    <img id="layer-heart" src="heart.png" class="organ-layer absolute" style="top: 174px; left: 162px; width: 48px;">
+                    <img id="layer-liver" src="liver.png" class="organ-layer absolute" style="top: 274px; left: 106px; width: 110px;">
+                    <img id="layer-stomach" src="https://raw.githubusercontent.com/xmeng1544-eng/database/main/Stomach.png" class="organ-layer absolute" style="top: 294px; left: 132px; width: 106px;">
+                    <img id="layer-pancreas" src="Pancreas.png" class="organ-layer absolute" style="top: 360px; left: 142px; width: 88px;">
+                    <img id="layer-spleen" src="spleen.png" class="organ-layer absolute" style="top: 318px; left: 222px; width: 32px;">
+                    <img id="layer-small-intestine" src="Small intestine.png" class="organ-layer absolute" style="top: 426px; left: 124px; width: 104px;">
+                    <img id="layer-large-intestine" src="Large intestine.png" class="organ-layer absolute" style="top: 390px; left: 112px; width: 130px;">
+                    <img id="layer-testis" src="Testis.png" class="organ-layer absolute" style="top: 596px; left: 58px; width: 60px;">
+                    <img id="layer-prostate" src="Prostate.png" class="organ-layer absolute" style="top: 538px; left: 60px; width: 74px;">
+                    <img id="layer-uterus" src="Uterus.png" class="organ-layer absolute" style="top: 542px; left: 286px; width: 104px;">
+                    <img id="layer-ovary" src="Ovary.png" class="organ-layer absolute" style="top: 616px; left: 308px; width: 52px;">
                 </div>
             </div>
         </div>
@@ -79,9 +76,14 @@
 
     <script>
         document.querySelectorAll('.tissue-card').forEach(card => {
-            const layer = document.getElementById(`layer-${card.getAttribute('data-target')}`);
-            card.addEventListener('mouseenter', () => { if (layer) layer.classList.add('layer-active'); });
-            card.addEventListener('mouseleave', () => { if (layer) layer.classList.remove('layer-active'); });
+            card.addEventListener('mouseenter', () => {
+                const layer = document.getElementById('layer-' + card.dataset.target);
+                if (layer) layer.classList.add('layer-active');
+            });
+            card.addEventListener('mouseleave', () => {
+                const layer = document.getElementById('layer-' + card.dataset.target);
+                if (layer) layer.classList.remove('layer-active');
+            });
         });
     </script>
 </body>
