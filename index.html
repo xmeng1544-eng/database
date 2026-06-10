@@ -28,7 +28,7 @@
         <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
             <div class="font-bold text-xl text-blue-600 tracking-wide flex items-center space-x-2">
                 <span>🧬</span>
-                <span>[ 网站名字/LOGO占位 ]</span>
+                <span>Tissue Atlas</span>
             </div>
             <div class="hidden md:flex space-x-8 text-gray-500 font-medium">
                 <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">首页看板</a>
@@ -44,7 +44,6 @@
     </nav>
 
     <main class="flex-grow">
-        
         <section class="bg-white pt-20 pb-10 border-b border-gray-100">
             <div class="max-w-4xl mx-auto text-center px-4">
                 <h1 class="text-4xl sm:text-5xl font-black text-gray-900 mb-6 tracking-tight">
@@ -53,49 +52,65 @@
                 <p class="text-xl text-gray-500 mb-8 max-w-2xl mx-auto leading-relaxed">
                     提供多维度、高分辨率的基因表达图谱及调控区域检索
                 </p>
-            </div>
-        </section>
 
-        <section class="bg-gray-50 py-16 border-b border-gray-100">
-            <div class="max-w-4xl mx-auto px-4 text-center">
                 <div class="relative max-w-3xl mx-auto flex flex-col sm:flex-row items-stretch bg-white rounded-2xl shadow-md border border-gray-200 p-1.5 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all">
-                    
                     <div class="relative flex items-center border-b sm:border-b-0 sm:border-r border-gray-200 px-3 bg-gray-50/50 rounded-t-xl sm:rounded-l-xl sm:rounded-t-none">
-                        <span class="text-gray-400 mr-1 text-sm">🌱</span>
-                        <select class="bg-transparent text-gray-700 font-medium py-3 pl-1 pr-6 focus:outline-none cursor-pointer text-sm w-full sm:w-44 appearance-none" style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 4px center; background-size: 10px auto;">
+                        <select class="bg-transparent text-gray-700 font-medium py-3 pl-1 pr-8 focus:outline-none cursor-pointer text-sm w-full sm:w-56 appearance-none" 
+                                style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 8px center; background-size: 10px auto;">
                             <option value="all">All Species & Tissues</option>
                             <optgroup label="🧬 Human (人类)">
-                                <option value="human_all">-- All Human Tissues</option>
-                                <option value="human_blood">Blood (血液)</option>
-                                <option value="human_brain">Brain (大脑)</option>
-                                <option value="human_liver">Liver (肝脏)</option>
-                                <option value="human_heart">Heart (心脏)</option>
+                                <option value="marrow">Bone Marrow</option>
+                                <option value="brain">Brain</option>
+                                <option value="tongue">Tongue</option>
+                                <option value="oesophagus">Oesophagus</option>
+                                <option value="lung">Lungs</option>
+                                <option value="heart">Heart</option>
+                                <option value="liver">Liver</option>
+                                <option value="stomach">Stomach</option>
+                                <option value="pancreas">Pancreas</option>
+                                <option value="spleen">Spleen</option>
+                                <option value="small_intestine">Small Intestine</option>
+                                <option value="large_intestine">Large Intestine</option>
+                                <option value="testis">Testis</option>
+                                <option value="prostate">Prostate</option>
+                                <option value="uterus">Uterus</option>
+                                <option value="ovary">Ovary</option>
+                                <option value="blood_vessel">Blood Vessel</option>
+                                <option value="bladder">Bladder</option>
+                                <option value="breast">Breast</option>
+                                <option value="eyes">Eyes</option>
+                                <option value="lymph">Lymph</option>
+                                <option value="nasopharynx">Nasopharynx</option>
+                                <option value="nervous_system">Nervous System</option>
+                                <option value="skin">Skin</option>
+                                <option value="thymus">Thymus</option>
+                                <option value="synovium">Synovium</option>
+                                <option value="submaxillary">Submaxillary gland</option>
+                                <option value="peripheral_blood">Peripheral Blood</option>
+                                <option value="head_neck">Head and neck</option>
+                                <option value="bone_all">Bone (All)</option>
+                                <option value="fat">Fat</option>
+                                <option value="muscle">Muscle</option>
+                                <option value="gallbladder">Gallbladder</option>
                             </optgroup>
                             <optgroup label="🐭 Mouse (小鼠)">
-                                <option value="mouse_all">-- All Mouse Tissues</option>
-                                <option value="mouse_spleen">Spleen (脾脏)</option>
-                                <option value="mouse_lung">Lung (肺部)</option>
-                                <option value="mouse_kidney">Kidney (肾脏)</option>
-                                <option value="mouse_muscle">Muscle (肌肉)</option>
+                                <option value="mouse_fetal">Mouse Fetal</option>
+                                <option value="mouse_adult">Mouse Adult</option>
+                            </optgroup>
+                            <optgroup label="🐀 Rat (大鼠)">
+                                <option value="rat_atlas">Rat Atlas</option>
                             </optgroup>
                         </select>
                     </div>
 
                     <div class="flex-grow flex items-center pl-3 pr-2 py-2 sm:py-0">
-                        <span class="text-gray-400 text-base">🔍</span>
-                        <input type="text" 
-                               placeholder="Search by gene symbol, gene ID, or functional region..." 
-                               class="w-full pl-3 pr-4 py-2 bg-transparent text-gray-700 focus:outline-none text-base">
+                        <input type="text" placeholder="Search by gene symbol, gene ID, or functional region..." class="w-full pl-3 pr-4 py-2 bg-transparent text-gray-700 focus:outline-none text-base">
                     </div>
                     
                     <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-medium transition shadow-sm whitespace-nowrap m-1 sm:m-0">
                         Search
                     </button>
                 </div>
-
-                <p class="mt-4 text-xs sm:text-sm text-gray-400 tracking-wide">
-                    💡 提示：您可以检索 <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">gene symbol</span> (如: MYB), <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">gene ID</span> (如: ENSG000001) 或 <span class="text-gray-600 font-medium bg-gray-200/60 px-1.5 py-0.5 rounded">functional region</span> (如: Chr1:10000-20000)
-                </p>
             </div>
         </section>
 
@@ -104,35 +119,26 @@
                 <a href="tissue.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-lg mb-6">01</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">🧫 Tissue (组织/样本数据)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">此处可用于展示不同组织部位的组学数据。点击此卡片也可以直接进入独立页面。</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">包含人类各器官、小鼠发育阶段及大鼠的全景空间图谱。</p>
                 </a>
                 <a href="downloads.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-lg mb-6">02</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">💾 Downloads (数据下载中心)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">提供基因组组装序列、转录组原始数据下载通道。点击此卡片也可以直接进入独立页面。</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">提供多物种基因组组装序列、转录组原始数据及标准化表达矩阵下载。</p>
                 </a>
                 <a href="manual.html" class="block bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center font-bold text-lg mb-6">03</div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">🛠️ Manual (用户手册与方法)</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">详细记录实验方法与生物信息分析工作流。点击此卡片也可以直接进入独立页面。</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">详细记录实验方法、空间转录组分析流程及数据质量控制标准。</p>
                 </a>
             </div>
         </section>
-
     </main>
 
     <footer class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-sm">
-            <div>
-                &copy; 2026 基因组学数据共享共享平台. 保留所有权利.
-            </div>
-            <div class="flex space-x-6">
-                <a href="index.html" class="hover:text-white transition">HOME</a>
-                <a href="browse.html" class="hover:text-white transition">BROWSE</a>
-                <a href="contact.html" class="hover:text-white transition">CONTACT US</a>
-            </div>
+            <div>&copy; 2026 基因组学数据共享共享平台. 保留所有权利.</div>
         </div>
     </footer>
-
 </body>
 </html>
